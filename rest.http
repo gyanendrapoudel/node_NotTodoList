@@ -10,8 +10,18 @@ GET {{url}}
 POST  {{url}}
 Content-Type: application/json
 
-{
-    
-    "task":"coding",
-    "hr":40
+{   
+   "id":3,
+   "task":"reading",
+   "hr":15,
+   "type": "entry"
+}
+
+### Patch Method
+
+PATCH  {{url}}
+Content-Type: application/json
+
+{   "id":1,
+    "type":"bad"
 }

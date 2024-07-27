@@ -11,5 +11,7 @@ POST  {{url}}
 Content-Type: application/json
 
 {
-    "id":1
+    
+    "task":"coding",
+    "hr":40
 }

@@ -1,24 +1,14 @@
 import express from 'express'
 const router = express.Router()
+let fakeDb =[]
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
+  const {task,hr}=req.body
+  fakeDb.push(req.body)
   res.json({
     status:"success",
-    msg:"Response from get"
+    msg :"new task has been added"
   })
-})
-router.post('/', (req, res) => {
-  try {
-    const {id} = req.body
-    if(id===1){
-        throw new Error("no body data")
-    }
-    res.status(200).send(req.body)
-  } catch (error) {
-    console.log(error)
-    res.status(400).send({ msg : 'error occured' })
-    
-  }
 })
 
 export default router

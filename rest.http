@@ -25,3 +25,7 @@ Content-Type: application/json
 {   "id":1,
     "type":"bad"
 }
+
+
+### Delete Method
+DELETE {{url}}/1

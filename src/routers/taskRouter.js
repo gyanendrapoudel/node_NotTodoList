@@ -39,4 +39,14 @@ router.patch("/",(req,res)=>{
   fakeDb
  })
 })
+
+router.delete('/:id',(req,res)=>{
+  const {id} = req.params
+  fakeDb = fakeDb.filter((task)=>task.id!==parseInt(id));
+  res.json({
+    status:"success",
+    msg:"Task has been deleted",
+    fakeDb
+  })
+})
 export default router

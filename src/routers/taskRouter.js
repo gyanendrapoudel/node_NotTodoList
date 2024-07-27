@@ -1,7 +1,13 @@
 import express from 'express'
 const router = express.Router()
 let fakeDb =[]
-
+router.get('/', (req, res) => {
+  res.json({
+    status: 'success',
+    msg: 'response from get',
+    fakeDb,
+  })
+})
 router.post('/', (req, res) => {
   const {task,hr}=req.body
   fakeDb.push(req.body)

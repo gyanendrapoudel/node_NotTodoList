@@ -1,0 +1,15 @@
+### NOT TODO list API
+@url=http://localhost:8000/api/v1/taskLists
+
+### Get method
+
+GET {{url}}
+
+### Post Method
+
+POST  {{url}}
+Content-Type: application/json
+
+{
+    "id":1
+}

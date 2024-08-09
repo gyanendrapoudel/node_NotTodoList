@@ -33,26 +33,23 @@ router.post('/', async (req, res) => {
 
 router.patch("/",(req,res)=>{
  const {id, type} = req.body
-  fakeDb = fakeDb.map((task)=>{
-    if(task.id===id){
-      task.type=type
-    }
-    return task
-  })
+console.log(req.body)
  res.json({
   status:"success",
   msg:"task has been updated",
-  fakeDb
+  
  })
 })
 
-router.delete('/:id',(req,res)=>{
+router.delete('/:id', async (req,res)=>{
   const {id} = req.params
-  fakeDb = fakeDb.filter((task)=>task.id!==parseInt(id));
+  
+  const result = await TaskCollection.deleteOne({_id:id})
+  console.log(result)
   res.json({
     status:"success",
     msg:"Task has been deleted",
-    fakeDb
+    result
   })
 })
 export default router

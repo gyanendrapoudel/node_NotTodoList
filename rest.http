@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {   
 
-   "task":"reading",
+   "task":"writing",
    "hr":15,
    "type": "entry"
 }
@@ -22,10 +22,10 @@ Content-Type: application/json
 PATCH  {{url}}
 Content-Type: application/json
 
-{   "id":1,
-    "type":"bad"
+{   "id":"66b57803d5344f9b08daf18a",
+    "type":"entry"
 }
 
 
 ### Delete Method
-DELETE {{url}}/1
+DELETE {{url}}/66b56c40575f7425a40543f3

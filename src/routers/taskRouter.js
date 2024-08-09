@@ -31,13 +31,15 @@ router.post('/', async (req, res) => {
   })
 })
 
-router.patch("/",(req,res)=>{
- const {id, type} = req.body
-console.log(req.body)
- res.json({
+router.patch("/", async (req,res)=>{
+ const {id:_id, ...rest} = req.body
+ console.log(rest)
+const result = await TaskCollection.findByIdAndUpdate(_id, rest)
+
+res.json({
   status:"success",
   msg:"task has been updated",
-  
+  result
  })
 })
 

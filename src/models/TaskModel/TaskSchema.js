@@ -18,5 +18,19 @@ const taskSchema = new mongoose.Schema(
   },
   { timestamps: true }
 )
-export const TaskCollection = mongoose.model('Task', taskSchema)
+const TaskCollection = mongoose.model('Task', taskSchema)
 
+export const insertTask = (taskObj)=>{
+  return TaskCollection(taskObj).save();
+}
+export const getTasks = ()=>{
+  return TaskCollection.find({},{_id:0})
+}
+
+export const updateTask = (_id,rest)=>{
+return TaskCollection.findOneAndUpdate({_id},{rest},{new:true})
+}
+
+export const deleteTask = (_id)=>{
+  return TaskCollection.findByIdAndDelete({_id})
+}

@@ -22,7 +22,7 @@ PATCH  {{url}}
 Content-Type: application/json
 
 {   "id":"66b57803d5344f9b08daf18a",
-    "type":"bad"
+    "type":"entry"
 }
 
 

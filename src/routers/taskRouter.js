@@ -9,11 +9,13 @@ let fakeDb = [
 ]
 const taskSchema = new mongoose.Schema({},{strict:false})
 const TaskCollection = mongoose.model('Task',taskSchema)
-router.get('/', (req, res) => {
+
+router.get('/', async (req, res) => {
+  const tasks = await TaskCollection.find({},{_id:0})
   res.json({
     status: 'success',
     msg: 'response from get',
-    fakeDb,
+    tasks,
   })
 })
 

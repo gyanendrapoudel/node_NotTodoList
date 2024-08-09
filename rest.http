@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {   
    "task":"eating",
-   "hr":1,
+   "hr":101,
    "type": "entry"
 }
 

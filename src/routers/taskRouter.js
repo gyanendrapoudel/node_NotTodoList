@@ -1,4 +1,5 @@
 import express from 'express'
+import mongoose from 'mongoose'
 const router = express.Router()
 let fakeDb = [
   { id: 1, task: 'washing', hr: 8, type: 'entry' },
@@ -6,6 +7,8 @@ let fakeDb = [
   { id: 3, task: 'swimming', hr: 5, type: 'entry' },
   { id: 4, task: 'reading', hr: 15, type: 'entry' },
 ]
+const taskSchema = new mongoose.Schema({},{strict:false})
+const TaskCollection = mongoose.model('Task',taskSchema)
 router.get('/', (req, res) => {
   res.json({
     status: 'success',
@@ -14,14 +17,15 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const {task,hr}=req.body
-  fakeDb.push(req.body)
-  console.log(fakeDb)
+  const result = await TaskCollection({task,hr}).save()
+  console.log(result)
+  
   res.send({
     status:"success",
     msg:"new task has been added",
-    fakeDb
+    result
   })
 })
 

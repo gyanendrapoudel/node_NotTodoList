@@ -11,9 +11,8 @@ POST  {{url}}
 Content-Type: application/json
 
 {   
-
-   "task":"writing",
-   "hr":15,
+   "task":"eating",
+   "hr":1,
    "type": "entry"
 }
 
@@ -23,7 +22,7 @@ PATCH  {{url}}
 Content-Type: application/json
 
 {   "id":"66b57803d5344f9b08daf18a",
-    "type":"entry"
+    "type":"bad"
 }
 
 

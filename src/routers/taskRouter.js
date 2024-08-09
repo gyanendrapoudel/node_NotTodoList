@@ -7,7 +7,19 @@ let fakeDb = [
   { id: 3, task: 'swimming', hr: 5, type: 'entry' },
   { id: 4, task: 'reading', hr: 15, type: 'entry' },
 ]
-const taskSchema = new mongoose.Schema({},{strict:false})
+const taskSchema = new mongoose.Schema(
+  {
+    task:{
+      type:String,
+      required:true
+    },
+    hr:{
+      type:Number,
+      required:true,
+      min:1,
+      max:100
+    }
+  },{strict:false})
 const TaskCollection = mongoose.model('Task',taskSchema)
 
 router.get('/', async (req, res) => {
@@ -20,21 +32,27 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const {task,hr}=req.body
-  const result = await TaskCollection({task,hr}).save()
-  console.log(result)
-  
-  res.send({
-    status:"success",
-    msg:"new task has been added",
-    result
-  })
+  try {
+      const { task, hr } = req.body
+      const result = await TaskCollection({ task, hr }).save()
+      console.log(result)
+
+      res.send({
+        status: 'success',
+        msg: 'new task has been added',
+        result,
+      })
+  } catch (error) {
+    console.log(error.message)
+    res.send(error.message)
+  }
+
 })
 
 router.patch("/", async (req,res)=>{
  const {id:_id, ...rest} = req.body
  console.log(rest)
-const result = await TaskCollection.findByIdAndUpdate(_id, rest)
+const result = await TaskCollection.findByIdAndUpdate(_id, rest,{new:true})
 
 res.json({
   status:"success",

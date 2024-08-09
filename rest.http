@@ -11,8 +11,8 @@ POST  {{url}}
 Content-Type: application/json
 
 {   
-   "task":"eating",
-   "hr":101,
+   "task":"watching movie",
+   "hr":20,
    "type": "entry"
 }
 

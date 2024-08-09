@@ -1,30 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose'
 const router = express.Router()
+import { TaskCollection } from '../models/TaskModel/TaskSchema.js'
 let fakeDb = [
   { id: 1, task: 'washing', hr: 8, type: 'entry' },
   { id: 2, task: 'gaming', hr: 10, type: 'entry' },
   { id: 3, task: 'swimming', hr: 5, type: 'entry' },
   { id: 4, task: 'reading', hr: 15, type: 'entry' },
 ]
-const taskSchema = new mongoose.Schema(
-  {
-    task:{
-      type:String,
-      required:true
-    },
-    hr:{
-      type:Number,
-      required:true,
-      min:1,
-      max:[100,"max hour per task is 100"]
-    },
-    type:{
-      enum:["entry","bad"],
-    },
-
-  })
-const TaskCollection = mongoose.model('Task',taskSchema)
 
 router.get('/', async (req, res) => {
   const tasks = await TaskCollection.find({},{_id:0})

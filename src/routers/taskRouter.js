@@ -19,8 +19,11 @@ const taskSchema = new mongoose.Schema(
       min:1,
       max:[100,"max hour per task is 100"]
     },
+    type:{
+      enum:["entry","bad"],
+    },
 
-  },{strict:false})
+  })
 const TaskCollection = mongoose.model('Task',taskSchema)
 
 router.get('/', async (req, res) => {

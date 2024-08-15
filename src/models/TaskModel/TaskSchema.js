@@ -13,7 +13,9 @@ const taskSchema = new mongoose.Schema(
       max: [100, 'max hour per task is 100'],
     },
     type: {
+      type:String,
       enum: ['entry', 'bad'],
+      default:"entry"
     },
   },
   { timestamps: true }
@@ -24,11 +26,12 @@ export const insertTask = (taskObj)=>{
   return TaskCollection(taskObj).save();
 }
 export const getTasks = ()=>{
-  return TaskCollection.find({},{_id:0})
+  return TaskCollection.find({})
 }
 
 export const updateTask = (_id,rest)=>{
-return TaskCollection.findOneAndUpdate({_id},{rest},{new:true})
+  
+return TaskCollection.findOneAndUpdate({_id},rest,{new:true})
 }
 
 export const deleteTask = (_id)=>{

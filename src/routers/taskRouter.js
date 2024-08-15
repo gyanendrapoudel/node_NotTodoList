@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
       const { task, hr } = req.body
+      console.log(req.body)
       const result = await insertTask({task,hr})
       console.log(result)
 
@@ -37,22 +38,33 @@ router.post('/', async (req, res) => {
       })
   } catch (error) {
     console.log(error.message)
-    res.send(error.message)
+    res.send({msg:error.message})
   }
 
 })
 
 router.patch("/", async (req,res)=>{
- const {id:_id, ...rest} = req.body
- console.log(rest)
+    try {
+      const {_id, ...rest} = req.body
+      const result = await updateTask(_id, rest)
+      result?._id
+        ? res.json({
+            status: 'success',
+            msg: 'task has been updated',
+            result,
+          })
+        : res.json({
+            status: 'error',
+            msg: 'Unable to update task ',
+          })
 
-const result = await updateTask(_id, rest)
+    } catch (error) {
+        res.json({
+          status: 'error',
+          msg: error.message,
+        })
+    }
 
-res.json({
-  status:"success",
-  msg:"task has been updated",
-  result
- })
 })
 
 router.delete('/:id', async (req,res)=>{

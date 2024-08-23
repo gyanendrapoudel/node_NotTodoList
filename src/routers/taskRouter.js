@@ -67,6 +67,19 @@ router.patch("/", async (req,res)=>{
 
 })
 
+// router.delete('/:id', async (req,res)=>{
+//   const {id} = req.params
+  
+//   const result = await deleteTask(id)
+//   console.log(result)
+//   res.json({
+//     status:"success",
+//     msg:"Task has been deleted",
+//     result
+//   })
+// })
+
+// Delete many tasks
 router.delete('/', async (req,res)=>{
   
   const ids = req.body
